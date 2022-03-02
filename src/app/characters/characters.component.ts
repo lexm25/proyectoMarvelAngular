@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CharactersApiService } from './shared/characters-api.service';
-import { Observable, observable } from 'rxjs';
+import { Observable } from 'rxjs';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-characters',
@@ -8,8 +9,11 @@ import { Observable, observable } from 'rxjs';
   styleUrls: ['./characters.component.css']
 })
 export class CharactersComponent implements OnInit {
+  public id=0;
 
-  constructor(private characterSvc: CharactersApiService) { }
+  constructor(private characterSvc: CharactersApiService, private actRoute: ActivatedRoute, private _router: Router) {
+    this.id=this.actRoute.snapshot.params['id'];
+   }
   allCharacters: Observable<any>;
   ngOnInit(): void {
     this.getCharacters();

@@ -18,13 +18,15 @@ import { HttpClientModule } from '@angular/common/http';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FormularioComponent } from './formulario/formulario.component';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
     CharactersComponent,
-    FormularioComponent
+    FormularioComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
