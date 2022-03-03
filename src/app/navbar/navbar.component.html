@@ -22,7 +22,12 @@
         *ngIf="isHandset$ | async">
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>
-      <span>marvelAngular</span>
+      <div class="position-absolute end-0" style="margin-right: 20px;">
+      <form class="d-flex">
+        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn bg-secondary" type="submit" style="color: white;">Search</button>
+      </form>
+    </div>
     </mat-toolbar>
     <!-- Add Content Here -->
     <router-outlet></router-outlet>
