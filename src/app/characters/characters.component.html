@@ -1,16 +1,39 @@
 <div fxflex fxLayout="column">
-    <div fxLayout="row wrap">
-        <!--RESPONSIVE-->
-        <div fxFlex="25" fxFlex.md="33" fxFlex.sm="50" fxFlex.xs="100" *ngFor="let character of allCharacters | async" style="padding: 5px;">
-            <mat-card>
-                <img mat-card-image src="{{character.thumbnail.path}}.{{character.thumbnail.extension}}" alt="{{character.name}}">
-                <mat-card-title>
-                    {{character.name}}
-                </mat-card-title>
-                <mat-card-footer>
-                    <a fxFlex mat-flat-button color="primary">Detalles</a>
-                </mat-card-footer>
-            </mat-card>
+    <div *ngIf="info; else noInfo">
+        <div fxLayout="row wrap">
+            <!--RESPONSIVE-->
+            <div fxFlex="25" fxFlex.md="33" fxFlex.sm="50" fxFlex.xs="100" *ngFor="let character of allCharacters | async; let indice= index" style="padding: 5px;">
+                <div *ngIf="info==character.name">
+                    <mat-card>
+                        <img mat-card-image src="{{character.thumbnail.path}}.{{character.thumbnail.extension}}" alt="{{character.name}}">
+                        <mat-card-title>
+                            <span style="color: rgb(12, 128, 200);">NAME:</span>
+                            {{character.name}}<br>
+                            <span style="color: rgb(12, 128, 200);">DESCRIPTION:</span>
+                            <div *ngIf="character.description==''">No description</div>
+                            {{character.description}}
+                        </mat-card-title>
+                    </mat-card>
+                </div>
+            </div>
         </div>
     </div>
+
+    <ng-template #noInfo>
+        <div fxLayout="row wrap">
+            <!--RESPONSIVE-->
+            <div fxFlex="25" fxFlex.md="33" fxFlex.sm="50" fxFlex.xs="100" *ngFor="let character of allCharacters | async; let indice=index" style="padding: 5px;">
+                <mat-card>
+                    <img mat-card-image src="{{character.thumbnail.path}}.{{character.thumbnail.extension}}" alt="{{character.name}}">
+                    <mat-card-title>
+                        {{character.name}}
+                    </mat-card-title>
+                    <mat-card-footer>
+                        <a fxFlex mat-flat-button color="primary" [routerLink]="['/characters',character.name]" style="margin: 5px;">Detalles</a>
+                        <button fxFlex mat-flat-button color="primary" style="margin: 5px;">Borrar</button>
+                    </mat-card-footer>
+                </mat-card>
+            </div>
+        </div>
+    </ng-template>
 </div>

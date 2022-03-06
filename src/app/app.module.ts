@@ -26,7 +26,7 @@ import { HomeComponent } from './home/home.component';
     NavbarComponent,
     CharactersComponent,
     FormularioComponent,
-    HomeComponent
+    HomeComponent,
   ],
   imports: [
     BrowserModule,

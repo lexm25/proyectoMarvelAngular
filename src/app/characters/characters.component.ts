@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CharactersApiService } from './shared/characters-api.service';
+import { CharactersApiService } from './servicio/characters-api.service';
 import { Observable } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
 
@@ -9,18 +9,24 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./characters.component.css']
 })
 export class CharactersComponent implements OnInit {
-  public id=0;
+  public info="";
+  allCharacters: Observable<any>;
 
   constructor(private characterSvc: CharactersApiService, private actRoute: ActivatedRoute, private _router: Router) {
-    this.id=this.actRoute.snapshot.params['id'];
-   }
-  allCharacters: Observable<any>;
+    this.info=this.actRoute.snapshot.params['info'];
+  }
+  
   ngOnInit(): void {
     this.getCharacters();
   }
 
   getCharacters(){
     this.allCharacters = this.characterSvc.getAllCharacters();
+    console.log(this.allCharacters);
   }
+
+  /*eliminarPersonaje(index:number){
+    delete this.allCharacters[index];
+  }*/
 
 }

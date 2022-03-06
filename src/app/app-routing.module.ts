@@ -15,6 +15,9 @@ const routes: Routes = [
     path: 'characters', component: CharactersComponent
   },
   {
+    path: 'characters/:info', component: CharactersComponent
+  },
+  {
     path: 'formulario', component: FormularioComponent
   }
 ];
