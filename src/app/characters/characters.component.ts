@@ -10,23 +10,20 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class CharactersComponent implements OnInit {
   public info="";
-  allCharacters: Observable<any>;
+  public personajes:Array<any>;
 
   constructor(private characterSvc: CharactersApiService, private actRoute: ActivatedRoute, private _router: Router) {
     this.info=this.actRoute.snapshot.params['info'];
+    this.personajes=[];
   }
   
   ngOnInit(): void {
-    this.getCharacters();
+    this.characterSvc.getAllCharacters().subscribe(data=>{ return this.personajes=data});
+
   }
 
-  getCharacters(){
-    this.allCharacters = this.characterSvc.getAllCharacters();
-    //console.log(this.allCharacters);
+  eliminarPersonaje(index:number){
+    this.personajes.splice(this.personajes.findIndex((element)=>element.id==index),1);
   }
-
-  /*eliminarPersonaje(index:number){
-    delete this.allCharacters[index];
-  }*/
 
 }
